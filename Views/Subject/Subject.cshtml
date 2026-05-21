@@ -1,0 +1,229 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Subjects</title>
+    <!-- Include Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            display: flex;
+            min-height: 100vh;
+            flex-direction: column;
+            background-color: lightblue; /* Added purple background color */
+            color: white;
+        }
+
+        .container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .btn-block {
+            background-color: transparent !important;
+            border: 1px solid #dee2e6;
+            border-radius: 0;
+            position: relative;
+            overflow: hidden;
+            margin: 10px;
+            width: 150px;
+            height: 150px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+            .btn-block img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                transition: transform 0.3s ease;
+            }
+
+            .btn-block:hover img {
+                transform: scale(1.1);
+            }
+
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        /* Styles for Save and Cancel buttons */
+        #saveButton, #cancelButton {
+            background-color: blue;
+            color: white;
+            border: 1px solid red;
+        }
+
+            #saveButton:hover, #cancelButton:hover {
+                background-color: white;
+                border-color: blue;
+            }
+
+        /* Add styles for subject buttons */
+        #arabicButton, #englishButton, #frenchButton,
+        #mathButton, #chemistryButton, #physicsButton,
+        #biologyButton, #historyButton, #geographyButton {
+            background-color: red;
+            color: white;
+            border: 1px solid red;
+        }
+
+        .subject-button:hover {
+            background-color: blue;
+            border-color: blue;
+        }
+
+        /* Style for delete button */
+        .delete-button {
+            background-color: red;
+            color: white;
+            border: 1px solid red;
+            cursor: pointer;
+        }
+
+            .delete-button:hover {
+                background-color: white;
+                color: red;
+            }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Upper Location - Save and Cancel Buttons -->
+        <div id="buttonsContainer">
+            <button id="saveButton" class="btn btn-dark">Save</button>
+            <button id="cancelButton" class="btn btn-dark">Cancel</button>
+        </div>
+
+        <!-- Middle of the top page - Page Title -->
+        <h1>Subjects</h1>
+
+        <!-- Add labels and button -->
+        <label for="studentId">Student ID:</label>
+        <input type="text" id="studentId" name="studentId" />
+
+        <label for="studentName">Student Name:</label>
+        <input type="text" id="studentName" name="studentName" />
+
+        <button id="checkButton" class="btn btn-primary">Check</button>
+
+        <!-- Middle of the page - 3 columns with 3 buttons each -->
+        <div class="row mb-3">
+            <div class="col-md-4">
+                <button id="arabicButton" type="button" class="btn btn-primary btn-block subject-button">
+                    <img src="~/image/arabic.jpg" alt="Arabic Image" />
+                </button>
+
+                <button id="englishButton" type="button" class="btn btn-primary btn-block subject-button">
+                    <img src="~/image/english.jpg" alt="English Image" />
+                </button>
+
+                <button id="frenchButton" type="button" class="btn btn-primary btn-block subject-button">
+                    <img src="~/image/franc.jpg" alt="French Image" />
+                </button>
+            </div>
+            <div class="col-md-4">
+                <button id="mathButton" type="button" class="btn btn-primary btn-block subject-button">
+                    <img src="~/image/math.jpg" alt="Math Image" />
+                </button>
+
+                <button id="chemistryButton" type="button" class="btn btn-primary btn-block subject-button">
+                    <img src="~/image/chy.jpg" alt="Chemistry Image" />
+                </button>
+
+                <button id="physicsButton" type="button" class="btn btn-primary btn-block subject-button">
+                    <img src="~/image/phy.jpg" alt="Physics Image" />
+                </button>
+            </div>
+            <div class="col-md-4">
+                <button id="biologyButton" type="button" class="btn btn-primary btn-block subject-button">
+                    <img src="~/image/bio.jpg" alt="Biology Image" />
+                </button>
+
+                <button id="historyButton" type="button" class="btn btn-primary btn-block subject-button">
+                    <img src="~/image/history.jpg" alt="History Image" />
+                </button>
+
+                <button id="geographyButton" type="button" class="btn btn-primary btn-block subject-button">
+                    <img src="~/image/geo.jpg" alt="Geography Image" />
+                </button>
+            </div>
+        </div>
+
+        <!-- New: List to store selected subjects -->
+        <h3>Selected Subjects:</h3>
+        <ul id="selectedSubjects"></ul>
+    </div>
+
+    <!-- Include Bootstrap JS (Optional if you need JavaScript functionality) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- Add hover effect for the button -->
+    <script>
+        $(document).ready(function () {
+            $('#checkButton').hover(function () {
+                $(this).toggleClass('btn-primary').toggleClass('btn-danger');
+            });
+            $('#cancelButton').click(function () {
+                // Redirect to the Dashboard action of the Employee controller
+                window.location.href = '@Url.Action("Dashboard", "Employee")';
+            });
+
+            // Hover effect for subject buttons
+            $('.subject-button').hover(function () {
+                $(this).css('background-color', 'blue');
+                $(this).css('border-color', 'blue');
+            }, function () {
+                $(this).css('background-color', 'red');
+                $(this).css('border-color', 'red');
+            });
+
+            // Hover effect for Save and Cancel buttons
+            $('#saveButton, #cancelButton').hover(function () {
+                $(this).css('background-color', 'blue');
+                $(this).css('border-color', 'blue');
+            }, function () {
+                $(this).css('background-color', 'red');
+                $(this).css('border-color', 'red');
+            });
+
+            // Array to store selected subjects
+            var selectedSubjects = [];
+
+            // Event listener for subject buttons
+            $('.subject-button').click(function () {
+                var subject = $(this).attr('id').replace('Button', '');
+                if (!selectedSubjects.includes(subject)) {
+                    selectedSubjects.push(subject);
+                    updateSelectedSubjectsList();
+                }
+            });
+
+            // Function to update the selected subjects list
+            function updateSelectedSubjectsList() {
+                $('#selectedSubjects').empty();
+                $.each(selectedSubjects, function (index, subject) {
+                    $('#selectedSubjects').append('<li>' + subject + '<button class="delete-button" data-subject="' + subject + '">Delete</button></li>');
+                });
+            }
+
+            // Event listener for delete button
+            $(document).on('click', '.delete-button', function () {
+                var subject = $(this).data('subject');
+                selectedSubjects = selectedSubjects.filter(function (value) {
+                    return value !== subject;
+                });
+                updateSelectedSubjectsList();
+            });
+        });
+    </script>
+</body>
+</html>

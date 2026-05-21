@@ -1,0 +1,65 @@
+﻿@model IEnumerable<AME.Models.Student>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Student List</h1>
+
+<p>
+    <a asp-controller="Student" asp-action="StudentRegister">Add New Student</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.StudentName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StudentClass)
+            </th>
+            <th>
+                Photo
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.StudentName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StudentClass)
+            </td>
+            <td>
+                <img src="@item.StudentImage" alt="Student Photo" style="max-width: 100px; max-height: 100px;" />
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.StudentID">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.StudentID">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.StudentID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+<style>
+    .btn-cancel {
+        background-color: red;
+        color: white;
+        border: none;
+    }
+
+        .btn-cancel:hover {
+            background-color: black;
+        }
+
+        .btn-cancel:hover {
+            background-color: red;
+        }
+</style>
+<div>
+    <a asp-controller="Employee" asp-action="Dashboard" class="btn btn-cancel float-right"><b>Back</b></a>
+</div>

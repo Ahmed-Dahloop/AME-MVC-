@@ -1,0 +1,252 @@
+﻿        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Employee Registration</title>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
+
+            <style>
+                .field-validation-error {
+                    color: red;
+                }
+                /* Style for buttons */
+                .btn-primary:hover {
+                    background-color: green;
+                }
+
+                .btn-cancel:hover {
+                    background-color: red;
+                }
+                /* Additional styling for icons and images */
+                .input-group-addon {
+                    margin-right: 10px;
+                }
+
+                img {
+                    max-width: 100%;
+                    height: auto;
+                    margin-bottom: 20px;
+                }
+
+                .btn-cancel {
+                    background-color: red;
+                    color: white;
+                    border: none;
+                }
+
+                    .btn-cancel:hover {
+                        background-color: black;
+                    }
+
+                .btn-primary {
+                    background-color: green;
+                    color: white;
+                    border: none;
+                }
+
+                    .btn-primary:hover {
+                        background-color: blue;
+                    }
+
+            </style>
+        </head>
+        <body>
+            <div class="content">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6">
+                  
+                            <form asp-controller="Employee" asp-action="Employee" method="post" id="employeeForm">
+                                <div class="form-group row">
+                                    <label for="EmployeeID" class="col-sm-4 col-form-label"><b>Employee ID:</b></label>
+                                    <div class="col-sm-8 input-group">
+                                        <div class="input-group-addon"><i class="fas fa-id-badge"></i></div>
+                                        <input type="text" class="form-control" id="EmployeeCode" name="EmployeeCode" placeholder="Enter Employee ID">
+                                        <span class="field-validation-error" id="employeeCodeError"></span>
+                            
+                                    </div>
+                                </div>
+                                <!-- Add similar code for other input fields -->
+                                <!-- Employee Name -->
+                                <div class="form-group row">
+                                    <label for="EmployeeName" class="col-sm-4 col-form-label"><b>Employee Name:</b></label>
+                                    <div class="col-sm-8 input-group">
+                                        <div class="input-group-addon"><i class="fas fa-user"></i></div>
+                                        <input type="text" class="form-control" id="EmployeeName" name="EmployeeName" placeholder="Enter Employee Name">
+                                        <span class="field-validation-error" id="employeeNameError"></span>
+                                    </div>
+                                </div>
+                                <!-- Employee Job -->
+                                <div class="form-group row">
+                                    <label for="EmployeeJob" class="col-sm-4 col-form-label"><b>Employee Job:</b></label>
+                                    <div class="col-sm-8 input-group">
+                                        <div class="input-group-addon"><i class="fas fa-briefcase"></i></div>
+                                        <input type="text" class="form-control" id="EmployeeJob" name="EmployeeJob" placeholder="Enter Employee Job">
+                                        <span class="field-validation-error" id="employeeJobError"></span>
+                                    </div>
+                                </div>
+                                <!-- Employee Phone -->
+                                <div class="form-group row">
+                                    <label for="EmployeePhone" class="col-sm-4 col-form-label"><b>Employee Phone:</b></label>
+                                    <div class="col-sm-8 input-group">
+                                        <div class="input-group-addon"><i class="fas fa-phone"></i></div>
+                                        <input type="text" class="form-control" id="EmployeePhone" name="EmployeePhone" placeholder="Enter Employee Phone">
+                                        <span class="field-validation-error" id="employeePhoneError"></span>
+                                    </div>
+                                </div>
+                                <!-- Employee Gender -->
+                                <div class="form-group row">
+                                    <label for="EmployeeGender" class="col-sm-4 col-form-label"><b>Employee Gender:</b></label>
+                                    <div class="col-sm-8 input-group">
+                                        <div class="input-group-addon"><i class="fas fa-venus-mars"></i></div>
+                                        <select class="form-control" id="EmployeeGender" name="EmployeeGender">
+                                            <option value="Male">Male</option>
+                                            <option value="Female">Female</option>
+                                        </select>
+                                        <span class="field-validation-error" id="employeeGenderError"></span>
+                                    </div>
+                                </div>
+                                <!-- Employee Age -->
+                                <div class="form-group row">
+                                    <label for="EmployeeAge" class="col-sm-4 col-form-label"><b>Employee Age:</b></label>
+                                    <div class="col-sm-8 input-group">
+                                        <div class="input-group-addon"><i class="fas fa-calendar"></i></div>
+                                        <input type="number" class="form-control" id="EmployeeAge" name="EmployeeAge" placeholder="Enter Employee Age">
+                                        <span class="field-validation-error" id="employeeAgeError"></span>
+                                    </div>
+                                </div>
+                                <!-- Employee Password -->
+                                <div class="form-group row">
+                                    <label for="EmployeePassword" class="col-sm-4 col-form-label"><b>Employee Password:</b></label>
+                                    <div class="col-sm-8 input-group">
+                                        <div class="input-group-addon"><i class="fas fa-lock"></i></div>
+                                        <input type="password" class="form-control" id="EmployeePassword" name="EmployeePassword" placeholder="Enter Employee Password">
+                                        <span class="field-validation-error" id="employeePasswordError"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-12 text-right">
+                                        <button type="submit" class="btn btn-primary float-right"><b>Save</b></button>
+                                        <a asp-controller="Employee" asp-action="Index" class="btn btn-cancel float-right"><b>Cancel</b></a>
+                                    </div>
+                                </div>
+                    
+                            </form>
+
+                        </div>
+                        <div class="col-md-6">
+                            <img src="~/image/Annotation 2024-03-18 121119.png" alt="Image" class="img-fluid" style="width: 80%; height: 70%">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+            <!-- Font Awesome -->
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
+
+            <script>
+                $(document).ready(function () {
+         
+                        // Check if TempData contains a SuccessMessage
+                        var successMessage = '@TempData["SuccessMessage"]';
+                        var errorMessage = '@TempData["ErrorMessage"]';
+                       if (errorMessage) {
+                    // Show error message for EmployeeCode
+                     $('#employeeCodeError').text(errorMessage);
+                     }
+                       else if (successMessage) {
+                            // Show Swal success message
+                            Swal.fire({
+                                title: "Success!",
+                                text: successMessage,
+                                icon: "success"
+                            });
+                        }
+           
+                    $('#EmployeeCode').on('blur', function () {
+                        var inputVal = $(this).val();
+                        if (!isValidEmployeeCode(inputVal)) {
+                            $('#employeeCodeError').text("You should enter a character (capital) and numerical together.");
+                        } else {
+                            $('#employeeCodeError').text("");
+                        }
+                    });
+
+                    $('#EmployeeName').on('blur', function () {
+                        var inputVal = $(this).val();
+                        if (!isValidName(inputVal)) {
+                            $('#employeeNameError').text("You should enter first name and second name should start with capital.");
+                        } else {
+                            $('#employeeNameError').text("");
+                        }
+                    });
+
+                    $('#EmployeeJob').on('blur', function () {
+                        var inputVal = $(this).val();
+                        if (!isValidEmployeeJob(inputVal)) {
+                            $('#employeeJobError').text("You should enter one of the following: Manager, Co-Manager, Employee, Assistant, Helper.");
+                        } else {
+                            $('#employeeJobError').text("");
+                        }
+                    });
+
+                    $('#EmployeePhone').on('blur', function () {
+                        var inputVal = $(this).val();
+                        if (!isValidPhoneNumber(inputVal)) {
+                            $('#employeePhoneError').text("You should enter 11 numbers and start with '01'.");
+                        } else {
+                            $('#employeePhoneError').text("");
+                        }
+                    });
+
+                    $('#EmployeeAge').on('blur', function () {
+                        var inputVal = $(this).val();
+                        if (!isValidAge(inputVal)) {
+                            $('#employeeAgeError').text("Age should be between 25 and 50.");
+                        } else {
+                            $('#employeeAgeError').text("");
+                        }
+                    });
+
+                    $('#EmployeePassword').on('blur', function () {
+                        var inputVal = $(this).val();
+                        if (inputVal.length < 4) {
+                            $('#employeePasswordError').text("Password should be greater than 3 characters.");
+                        } else {
+                            $('#employeePasswordError').text("");
+                        }
+                    });
+
+                    function isValidEmployeeCode(code) {
+                        return /^[A-Z]+\d+$/.test(code);
+                    }
+
+                    function isValidName(name) {
+                        return /^[A-Z][a-z]+\s[A-Z][a-z]+$/.test(name);
+                    }
+
+                    function isValidEmployeeJob(job) {
+                        var validJobs = ["Manager", "Co-Manager", "Employee", "Assistant", "Helper"];
+                        return validJobs.includes(job);
+                    }
+
+                    function isValidPhoneNumber(phone) {
+                        return /^01\d{9}$/.test(phone);
+                    }
+
+                    function isValidAge(age) {
+                        var ageNum = parseInt(age);
+                        return ageNum >= 25 && ageNum <= 50;
+                    }
+                });
+            </script>
+        </body>
+        </html>

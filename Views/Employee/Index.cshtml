@@ -1,0 +1,69 @@
+﻿@model IEnumerable<AME.Models.Employee>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Employee List</h1>
+
+<p>
+    <a asp-controller="Employee" asp-action="Employee">Add New Employee</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.EmployeeName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EmployeeJob)
+            </th>
+            
+            <th>
+                @Html.DisplayNameFor(model => model.EmployeeGender)
+            </th>
+           
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.EmployeeName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EmployeeJob)
+            </td>
+            
+            <td>
+                @Html.DisplayFor(modelItem => item.EmployeeGender)
+            </td>
+            
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.EmployeeCode">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.EmployeeCode">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.EmployeeCode">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+<style>
+    .btn-cancel {
+        background-color: red;
+        color: white;
+        border: none;
+    }
+
+        .btn-cancel:hover {
+            background-color: black;
+        }
+
+        .btn-cancel:hover {
+            background-color: red;
+        }
+</style>
+<div>
+    <a asp-controller="Employee" asp-action="Dashboard" class="btn btn-cancel float-right"><b>Back</b></a>
+</div>

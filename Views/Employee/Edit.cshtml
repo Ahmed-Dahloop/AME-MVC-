@@ -1,0 +1,40 @@
+﻿@model AME.Models.Employee
+
+<h1>Edit Employee</h1>
+
+<form asp-action="Edit" method="post">
+    <input type="hidden" asp-for="EmployeeCode" />
+    <div class="form-group">
+        <label asp-for="EmployeeName"></label>
+        <input asp-for="EmployeeName" class="form-control" />
+        <span asp-validation-for="EmployeeName" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="EmployeeJob"></label>
+        <input asp-for="EmployeeJob" class="form-control" />
+        <span asp-validation-for="EmployeeJob" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="EmployeePhone"></label>
+        <input asp-for="EmployeePhone" class="form-control" />
+        <span asp-validation-for="EmployeePhone" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="EmployeeGender"></label>
+        <input asp-for="EmployeeGender" class="form-control" />
+        <span asp-validation-for="EmployeeGender" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="EmployeeAge"></label>
+        <input asp-for="EmployeeAge" class="form-control" />
+        <span asp-validation-for="EmployeeAge" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="EmployeePassword"></label>
+        <input asp-for="EmployeePassword" class="form-control" />
+        <span asp-validation-for="EmployeePassword" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+</form>
+
+<a asp-action="Index">Back to List</a>

@@ -1,0 +1,153 @@
+﻿@model AME.Models.Teacher
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+
+    <!-- Style -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <title>Student Registration</title>
+
+    <style>
+        .form-group.row {
+            margin-bottom: 50px;
+        }
+
+        .btn-primary,
+        .btn-cancel {
+            margin-top: 10px;
+            margin-right: 10px;
+        }
+
+        .btn-primary {
+            background-color: blue;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+            .btn-primary:hover {
+                background-color: green;
+            }
+
+        .btn-cancel {
+            background-color: red;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+            .btn-cancel:hover {
+                background-color: darkred;
+            }
+
+        .upload-area {
+            width: 200px; /* Adjust width as needed */
+            height: 220px; /* Adjust height as needed */
+            border: 2px dashed #ccc;
+            text-align: center;
+            line-height: 200px; /* Center content vertically */
+            cursor: pointer;
+        }
+
+        #fileInput {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="content">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 ">
+                    <img src="~/image/Annotation 2024-03-18 121119.png" alt="Image" class="img-fluid" style="width: 80%; height: 70%">
+                </div>
+                <div class="col-md-6">
+                    <form action="#" method="post">
+                        @if (TempData.ContainsKey("ErrorMessage"))
+                        {
+                            <div class="alert alert-danger" role="alert">
+                                @TempData["ErrorMessage"]
+                            </div>
+                        }
+
+
+                        <div class="form-group row">
+                            <label for="TeacherName" class="col-sm-4 col-form-label"><b>Teacher Name:</b></label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="TeacherName" name="TeacherName" asp-for="TeacherName" placeholder="Enter Teacher Name">
+                            </div>
+                        </div>
+
+
+                        <div class="form-group row">
+                            <label for="TeacherPhone" class="col-sm-4 col-form-label"><b>Teacher Phone:</b></label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="TeacherPhoneNO " name="TeacherPhoneNO " asp-for="TeacherPhoneNO" placeholder="Enter Teacher Phone">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="Teacher Gender" class="col-sm-4 col-form-label"><b>Teacher Gender:</b></label>
+                            <div class="col-sm-8">
+                                <select class="form-control" id="TeacherGender" name="TeacherGender" asp-for="TeacherGender">
+                                    <option value="Male"><b>Male</b></option>
+                                    <option value="Female"><b>Female</b></option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="TeacherAge" class="col-sm-4 col-form-label"><b>TeacherAge:</b></label>
+                            <div class="col-sm-8">
+                                <input type="number" class="form-control" id="TeacherAge" name="TeacherAge" asp-for="TeacherAge" placeholder="Enter Teacher Age">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="TeachingSubjectID" class="col-sm-4 col-form-label"><b>TeachingSubjectID:</b></label>
+                            <div class="col-sm-8">
+                                <select class="form-control" id="TeachingSubjectID" name="TeachingSubjectID" asp-for="TeachingSubjectID">
+                                    <option value="1">1</option>
+                                    <option value="2">2 </option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                </select>
+                                <small class="form-text text-muted">
+                                    Enter the corresponding number for the subject.
+                                </small>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-sm-6">
+                                <button type="submit" class="btn btn-primary"><b>Save</b></button>
+                                <a asp-controller="Employee" asp-action="Dashboard" class="btn btn-cancel"><b>Cancel</b></a>
+                            </div>
+                            @if (TempData["SuccessMessage"] != null)
+                            {
+                                <div class="alert alert-success" role="alert">
+                                    @TempData["SuccessMessage"]
+                                </div>
+                            }
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</body>
+</html>

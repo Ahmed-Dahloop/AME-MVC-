@@ -1,0 +1,191 @@
+﻿@model AME.Models.Student
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+
+    <!-- Style -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <title>Student Registration</title>
+
+    <style>
+        .form-group.row {
+            margin-bottom: 50px;
+        }
+
+        .btn-primary,
+        .btn-cancel {
+            margin-top: 10px;
+            margin-right: 10px;
+        }
+
+        .btn-primary {
+            background-color: blue;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+            .btn-primary:hover {
+                background-color: green;
+            }
+
+        .btn-cancel {
+            background-color: red;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+            .btn-cancel:hover {
+                background-color: darkred;
+            }
+
+        .upload-area {
+            width: 200px; /* Adjust width as needed */
+            height: 220px; /* Adjust height as needed */
+            border: 2px dashed #ccc;
+            text-align: center;
+            line-height: 200px; /* Center content vertically */
+            cursor: pointer;
+        }
+
+        #fileInput {
+            display: none;
+        }
+    </style>
+</head>
+<form method="post">
+<body>
+        @if (TempData.ContainsKey("ErrorMessage"))
+        {
+            <div class="alert alert-danger" role="alert">
+                @TempData["ErrorMessage"]
+            </div>
+        }
+    <div class="content">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 ">
+                    <img src="~/image/Annotation 2024-03-18 121119.png" alt="Image" class="img-fluid" style="width: 50%; height: 50%">
+                </div>
+                <div class="col-md-6">
+                    <form action="#" method="post">
+                        <div class="form-group row">
+                     
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="StudentName" class="col-sm-4 col-form-label"><b>Student Name:</b></label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="StudentName" name="StudentName" asp-for="StudentName" placeholder="Enter Student Name">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="StudentAddress" class="col-sm-4 col-form-label"><b>Student Address:</b></label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="StudentAddress" name="StudentAddress" asp-for="StudentAddress" placeholder="Enter StudentAddress">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="StudentPhone" class="col-sm-4 col-form-label"><b>Student Phone:</b></label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="StudentPhone" name="StudentPhone" asp-for="StudentPhone" placeholder="Enter Student Phone">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="StudentGender" class="col-sm-4 col-form-label"><b>Student Gender:</b></label>
+                            <div class="col-sm-8">
+                                <select class="form-control" id="StudentGender" name="StudentGender" asp-for="StudentGender">
+                                    <option value="Male"><b>Male</b></option>
+                                    <option value="Female"><b>Female</b></option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="StudentAge" class="col-sm-4 col-form-label"><b>Student Age:</b></label>
+                            <div class="col-sm-8">
+                                <input type="number" class="form-control" id="StudentAge" name="StudentAge" asp-for="StudentAge" placeholder="Enter Student Age">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="StudentClass" class="col-sm-4 col-form-label"><b>Student Class:</b></label>
+                            <div class="col-sm-8">
+                                <select class="form-control" id="StudentClass" name="StudentClass" asp-for="StudentClass">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                </select>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group row">
+                            <label for="StudentPhoto" class="col-sm-4 col-form-label"><b>Student Photo:</b></label>
+                            <div class="col-sm-8">
+                                <!-- Square area with upload link -->
+                                <div class="upload-area" id="uploadArea">
+                                    <a href="#" id="uploadLink">Click to Upload Image</a>
+                                    <!-- Hidden file input field -->
+                                    <input type="file" id="fileInput" style="display: none;">
+                                </div>
+                                <!-- Hidden input field to store image path -->
+                                <input type="hidden" id="StudentImage" name="StudentImage" asp-for="StudentImage">
+                            </div>
+                        </div>
+
+
+                        <div class="form-group row">
+                            <div class="col-sm-6">
+                                <button type="submit" class="btn btn-primary"><b>Save</b></button>
+                                <a asp-controller="Employee" asp-action="Dashboard" class="btn btn-cancel"><b>Cancel</b></a>
+                            </div>
+                    </form>
+                </div>
+             
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Function to handle file input change
+        document.getElementById("fileInput").addEventListener("change", function () {
+            var file = this.files[0];
+            if (file) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    var imageSrc = e.target.result;
+                    document.querySelector(".upload-area").innerHTML = '<img src="' + imageSrc + '" alt="Uploaded Image" class="img-fluid">';
+                    document.getElementById("StudentImage").value = imageSrc; // Set the image path to the hidden input field
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Trigger file input field when upload link is clicked
+        document.getElementById("uploadLink").addEventListener("click", function (e) {
+            e.preventDefault(); // Prevent default link behavior
+            document.getElementById("fileInput").click(); // Trigger file input click
+        });
+    </script>
+        @if (TempData["SuccessMessage"] != null)
+        {
+            <div class="alert alert-success" role="alert">
+                @TempData["SuccessMessage"]
+            </div>
+        }
+
+</body>
+</form>
+</html>

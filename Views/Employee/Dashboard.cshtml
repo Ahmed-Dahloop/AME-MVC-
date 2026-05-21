@@ -1,0 +1,191 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AME School</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .dashboard-container {
+            display: flex;
+            flex-direction: row;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+        }
+
+        .menu {
+            width: 25%;
+            max-width: 150px;
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            position: relative;
+            overflow-y: auto;
+            margin-right: 20px; /* Added margin to separate from colored boxes */
+        }
+
+            .menu ul {
+                list-style-type: none;
+                padding: 0;
+            }
+
+            .menu li {
+                margin-bottom: 10px;
+            }
+
+            .menu a {
+                color: #fff;
+                text-decoration: none;
+                display: block;
+                padding: 10px;
+                border-radius: 5px;
+                transition: background-color 0.3s ease;
+            }
+
+                .menu a:hover {
+                    background-color: #555;
+                }
+
+        .dashboard {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            width: 100%; /* Ensure it takes the remaining space */
+        }
+
+        .box {
+            width: calc(50% - 10px);
+            background-color: #f4f4f4;
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+            .box:hover {
+                transform: scale(1.05);
+            }
+
+            .box h2 {
+                margin-bottom: 10px;
+            }
+
+            .box.teachers {
+                background-color: green;
+            }
+
+            .box.students {
+                background-color: orange;
+            }
+
+            .box.subjects {
+                background-color: blue;
+            }
+
+            .box.hobbies {
+                background-color: red;
+                color: white;
+            }
+
+        .bottom-right {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            width: calc(100% - 40px); /* Adjust width for responsiveness */
+            margin-top: 20px;
+        }
+
+        .bottom-box {
+            width: calc(50% - 10px); /* Adjust width for responsiveness */
+            background-color: #f4f4f4;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+
+            .bottom-box p {
+                margin: 0;
+            }
+
+        .logout-btn {
+            background-color: red;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+
+            .logout-btn:hover {
+                background-color: grey;
+            }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>AME School</h1>
+    </div>
+    <div class="dashboard-container">
+        <div class="menu">
+            <ul>
+                <li><a href="/Teacher/TeacherRegister" class="teachers">Teacher</a></li>
+                <li><a href="/Student/Index" class="students">Student</a></li>
+                <li><a href="/Subject/Subject" class="subjects">Subject</a></li>
+                <li><a href="/Hobby/Hobby" class="hobbies">Hobby</a></li>
+                <li><a href="/Employee/Index" class="Employees">Employee</a></li>
+              
+
+                <!-- Repeat these li items as needed to fill the page -->
+            </ul>
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a href="/Home/Login" class="logout-btn">Log Out</a>
+                </li>
+            </ul>
+        </div>
+        <div class="dashboard">
+            <div class="box teachers">
+                <h2>Library</h2>
+                <p>No. of Libraries: 5</p>
+            </div>
+            <div class="box students">
+                <h2>Class</h2>
+                <p>No. of Classes: 50</p>
+            </div>
+            <div class="box subjects">
+                <h2>Subject</h2>
+                <p>No. of Subjects: 9</p>
+            </div>
+            <div class="box hobbies">
+                <h2>Activity</h2>
+                <p>No. of hobbies: 6</p>
+            </div>
+            <!-- Repeat these box items as needed -->
+        </div>
+        <div class="bottom-right">
+            <div class="bottom-box">
+                <h3>AME Reviews</h3>
+                <p>We received a great review about the secondary school! Our students are thriving and achieving remarkable success.</p>
+            </div>
+            <div class="bottom-box">
+                <h3>AME Certificates</h3>
+                <p>Congratulations to our first students for their outstanding achievements! They've received numerous certificates and cups for their exceptional performance.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

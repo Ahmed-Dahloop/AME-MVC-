@@ -1,0 +1,178 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Hobbies</title>
+    <!-- Include Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            display: flex;
+            min-height: 100vh;
+            flex-direction: column;
+            background-color: lightblue; /* Added purple background color */
+            color: white; /* Text color to contrast with the background */
+        }
+
+        .container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .btn-block {
+            background-color: transparent !important;
+            border: 1px solid #dee2e6;
+            border-radius: 0;
+            position: relative;
+            overflow: hidden;
+            margin: 10px;
+            width: 150px;
+            height: 150px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+            .btn-block img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                transition: transform 0.3s ease;
+            }
+
+            .btn-block:hover img {
+                transform: scale(1.1);
+            }
+
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        /* Style for delete button */
+        .delete-button {
+            background-color: red;
+            color: white;
+            border: 1px solid red;
+            cursor: pointer;
+        }
+
+            .delete-button:hover {
+                background-color: white;
+                color: red;
+            }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Middle of the top page - Page Title -->
+        <h1>Hobbies</h1>
+
+        <!-- Add labels and button -->
+        <label for="studentId">Student ID:</label>
+        <input type="text" id="studentId" name="studentId" />
+
+        <label for="studentName">Student Name:</label>
+        <input type="text" id="studentName" name="studentName" />
+
+        <button id="checkButton" class="btn btn-primary">Check</button>
+
+        <!-- Middle of the page - 2 rows with 3 columns each -->
+        <div class="row mb-3">
+            <div class="col-md-4">
+                <button id="footballButton" type="button" class="btn btn-primary btn-block hobby-button">
+                    <img src="~/image/football.jpg" alt="Football Image" />
+                </button>
+            </div>
+            <div class="col-md-4">
+                <button id="basketballButton" type="button" class="btn btn-primary btn-block hobby-button">
+                    <img src="~/image/basketball.jpg" alt="Basketball Image" />
+                </button>
+            </div>
+            <div class="col-md-4">
+                <button id="tennisButton" type="button" class="btn btn-primary btn-block hobby-button">
+                    <img src="~/image/tennis.jpg" alt="Tennisball Image" />
+                </button>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-md-4">
+                <button id="readingButton" type="button" class="btn btn-primary btn-block hobby-button">
+                    <img src="~/image/reading.jpg" alt="Reading Image" />
+                </button>
+            </div>
+            <div class="col-md-4">
+                <button id="codingButton" type="button" class="btn btn-primary btn-block hobby-button">
+                    <img src="~/image/coding.jpg" alt="Coding Image" />
+                </button>
+            </div>
+            <div class="col-md-4">
+                <button id="volunteerButton" type="button" class="btn btn-primary btn-block hobby-button">
+                    <img src="~/image/volunteer.jpg" alt="Volunteer Image" />
+                </button>
+            </div>
+        </div>
+
+        <!-- New: List to store selected hobbies -->
+        <h3>Selected Hobbies:</h3>
+        <ul id="selectedHobbies"></ul>
+    </div>
+
+    <!-- Footer with Save and Cancel buttons -->
+    <div class="footer">
+        <button id="saveButton" type="button" class="btn btn-dark">Save</button>
+        <button id="cancelButton" type="button" class="btn btn-dark">Cancel</button>
+    </div>
+
+    <!-- Include Bootstrap JS (Optional if you need JavaScript functionality) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- Add hover effect for the button -->
+    <script>
+        $(document).ready(function () {
+            $('#checkButton').hover(function () {
+                $(this).toggleClass('btn-primary').toggleClass('btn-danger');
+            });
+            $('#cancelButton').click(function () {
+                // Redirect to the Dashboard action of the Employee controller
+                window.location.href = '@Url.Action("Dashboard", "Employee")';
+            });
+
+            // Array to store selected hobbies
+            var selectedHobbies = [];
+
+            // Event listener for hobby buttons
+            $('.hobby-button').click(function () {
+                var hobby = $(this).attr('id').replace('Button', '');
+                if (!selectedHobbies.includes(hobby)) {
+                    selectedHobbies.push(hobby);
+                    updateSelectedHobbiesList();
+                }
+            });
+
+            // Function to update the selected hobbies list
+            function updateSelectedHobbiesList() {
+                $('#selectedHobbies').empty();
+                $.each(selectedHobbies, function (index, hobby) {
+                    $('#selectedHobbies').append('<li>' + hobby + '<button class="delete-button" data-hobby="' + hobby + '">Delete</button></li>');
+                });
+            }
+
+            // Event listener for delete button
+            $(document).on('click', '.delete-button', function () {
+                var hobby = $(this).data('hobby');
+                selectedHobbies = selectedHobbies.filter(function (value) {
+                    return value !== hobby;
+                });
+                updateSelectedHobbiesList();
+            });
+        });
+    </script>
+</body>
+</html>

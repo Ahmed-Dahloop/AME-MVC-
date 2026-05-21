@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - AME</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/AME.styles.css" asp-append-version="true" />
+    <link rel="icon" type="image/png" href="~/image/Annotation 2024-03-18 121119.png">
+    <style>
+        /* Custom styles for Home and Login links */
+        .home-link,
+        .login-link {
+            font-weight: bold;
+        }
+
+        /* Change the colors of Home and Login links */
+        .home-link {
+            color: #FF5733; /* Example color */
+        }
+
+        .login-link {
+            color: #3366FF; /* Example color */
+        }
+
+    </style>
+</head>
+<body>
+   
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+      
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
